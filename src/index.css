@@ -1,0 +1,810 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    cursor: default !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(135deg, #ADC8FF, #E1E9FF);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(173, 200, 255, 0.1);
+  }
+
+  /* Custom Cursor Styles - Enhanced visibility */
+  .custom-cursor {
+    cursor: default !important;
+  }
+
+  .custom-cursor * {
+    cursor: inherit !important;
+  }
+
+  .cursor-hover {
+    position: relative;
+    cursor: pointer !important;
+  }
+
+  .cursor-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(173, 200, 255, 0.3);
+  }
+
+  /* Floating Background Animations */
+  .floating-blob {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.1), rgba(42, 60, 92, 0.05));
+    animation: float 20s infinite ease-in-out;
+    pointer-events: none;
+  }
+
+  .blob-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .blob-2 {
+    top: 60%;
+    right: 10%;
+    animation-delay: -7s;
+  }
+
+  .blob-3 {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: -14s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px) scale(1.05);
+    }
+    50% {
+      transform: translateY(20px) translateX(-10px) scale(0.95);
+    }
+    75% {
+      transform: translateY(-10px) translateX(20px) scale(1.02);
+    }
+  }
+
+  /* Shimmer Particles */
+  .shimmer-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.6), rgba(255, 255, 255, 0.3));
+    border-radius: 50%;
+    animation: shimmer 8s linear infinite;
+    pointer-events: none;
+  }
+
+  .shimmer-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+  }
+
+  .shimmer-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: -2s;
+  }
+
+  .shimmer-3 {
+    bottom: 30%;
+    left: 60%;
+    animation-delay: -4s;
+  }
+
+  .shimmer-4 {
+    top: 40%;
+    left: 80%;
+    animation-delay: -6s;
+  }
+
+  @keyframes shimmer {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(0) scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-30px) scale(1);
+    }
+  }
+
+  /* New Subtle Background Elements */
+  
+  /* Pulsing Orbs */
+  .pulsing-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(173, 200, 255, 0.1), rgba(173, 200, 255, 0.02));
+    animation: pulse-glow 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .orb-1 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    right: 20%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 25%;
+    left: 15%;
+    animation-delay: -2s;
+  }
+
+  .orb-3 {
+    width: 100px;
+    height: 100px;
+    top: 70%;
+    right: 30%;
+    animation-delay: -4s;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.1);
+    }
+  }
+
+  /* Floating Dots */
+  .floating-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(173, 200, 255, 0.4);
+    border-radius: 50%;
+    animation: float-fade 10s linear infinite;
+    pointer-events: none;
+  }
+
+  .dot-1 {
+    top: 25%;
+    left: 25%;
+    animation-delay: 0s;
+  }
+
+  .dot-2 {
+    top: 45%;
+    right: 25%;
+    animation-delay: -2.5s;
+  }
+
+  .dot-3 {
+    bottom: 35%;
+    left: 70%;
+    animation-delay: -5s;
+  }
+
+  .dot-4 {
+    top: 65%;
+    left: 40%;
+    animation-delay: -7.5s;
+  }
+
+  @keyframes float-fade {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(0px);
+    }
+    25% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 0.8;
+      transform: translateY(-15px);
+    }
+    75% {
+      opacity: 0.4;
+    }
+  }
+
+  /* Light Streaks */
+  .light-streak {
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(173, 200, 255, 0), rgba(173, 200, 255, 0.3), rgba(173, 200, 255, 0));
+    animation: streak-move 12s linear infinite;
+    pointer-events: none;
+  }
+
+  .streak-1 {
+    top: 20%;
+    left: 60%;
+    animation-delay: 0s;
+  }
+
+  .streak-2 {
+    top: 50%;
+    right: 40%;
+    animation-delay: -6s;
+  }
+
+  @keyframes streak-move {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px) rotate(20deg);
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(20deg);
+    }
+  }
+
+  /* Floating House Elements */
+  .floating-house {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.1), rgba(255, 255, 255, 0.05));
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: float-house 15s linear infinite;
+    pointer-events: none;
+  }
+
+  .floating-house::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20%;
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.1), rgba(255, 255, 255, 0.05));
+  }
+
+  .house-1 {
+    top: 25%;
+    animation-delay: 0s;
+  }
+
+  .house-2 {
+    top: 55%;
+    animation-delay: -5s;
+  }
+
+  .house-3 {
+    top: 75%;
+    animation-delay: -10s;
+  }
+
+  @keyframes float-house {
+    0% {
+      transform: translateX(-50px) translateY(0px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.3;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateX(calc(100vw + 50px)) translateY(-10px);
+      opacity: 0;
+    }
+  }
+
+  /* Flying Bird Animations */
+  .bird-animation {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: fly-across 12s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Enhanced Background Elements */
+  
+  /* Fading Glow Orbs */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(173, 200, 255, 0.08), rgba(173, 200, 255, 0.02), transparent);
+    animation: fade-glow 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .glow-orb-1 {
+    width: 150px;
+    height: 150px;
+    top: 30%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .glow-orb-2 {
+    width: 100px;
+    height: 100px;
+    bottom: 40%;
+    right: 25%;
+    animation-delay: -3s;
+  }
+
+  .glow-orb-3 {
+    width: 120px;
+    height: 120px;
+    top: 65%;
+    left: 70%;
+    animation-delay: -6s;
+  }
+
+  @keyframes fade-glow {
+    0%, 100% {
+      opacity: 0.1;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.2);
+    }
+  }
+
+  /* Drifting Particles */
+  .drift-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(173, 200, 255, 0.3);
+    border-radius: 50%;
+    animation: drift-float 15s linear infinite;
+    pointer-events: none;
+  }
+
+  .particle-1 {
+    top: 20%;
+    left: 30%;
+    animation-delay: 0s;
+  }
+
+  .particle-2 {
+    top: 50%;
+    left: 60%;
+    animation-delay: -5s;
+  }
+
+  .particle-3 {
+    top: 70%;
+    left: 40%;
+    animation-delay: -10s;
+  }
+
+  .particle-4 {
+    top: 35%;
+    left: 80%;
+    animation-delay: -7s;
+  }
+
+  .particle-5 {
+    top: 80%;
+    left: 20%;
+    animation-delay: -12s;
+  }
+
+  @keyframes drift-float {
+    0% {
+      opacity: 0;
+      transform: translateY(0px) translateX(0px);
+    }
+    20% {
+      opacity: 0.6;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100px) translateX(50px);
+    }
+  }
+
+  /* Ripple Pulse Effects */
+  .ripple-pulse {
+    position: absolute;
+    border: 1px solid rgba(173, 200, 255, 0.1);
+    border-radius: 50%;
+    animation: ripple-expand 10s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .ripple-1 {
+    width: 80px;
+    height: 80px;
+    top: 25%;
+    right: 30%;
+    animation-delay: 0s;
+  }
+
+  .ripple-2 {
+    width: 60px;
+    height: 60px;
+    bottom: 30%;
+    left: 40%;
+    animation-delay: -5s;
+  }
+
+  @keyframes ripple-expand {
+    0% {
+      transform: scale(0.5);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  .bird-animation::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: -10px;
+    width: 15px;
+    height: 8px;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.2), rgba(255, 255, 255, 0.05));
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: wing-flap 0.5s ease-in-out infinite alternate;
+  }
+
+  .bird-animation::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: -10px;
+    width: 15px;
+    height: 8px;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.2), rgba(255, 255, 255, 0.05));
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: wing-flap 0.5s ease-in-out infinite alternate;
+  }
+
+  .bird-1 {
+    top: 20%;
+    animation-delay: 0s;
+  }
+
+  .bird-2 {
+    top: 35%;
+    animation-delay: -2s;
+  }
+
+  .bird-3 {
+    top: 50%;
+    animation-delay: -4s;
+  }
+
+  .bird-4 {
+    top: 65%;
+    animation-delay: -6s;
+  }
+
+  .bird-5 {
+    top: 80%;
+    animation-delay: -8s;
+  }
+
+  @keyframes fly-across {
+    0% {
+      transform: translateX(-100px) translateY(0px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 100px)) translateY(-20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes wing-flap {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(-20deg);
+    }
+  }
+
+  /* Hero Section Gradient Background */
+  .hero-gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(173, 200, 255, 0.08), rgba(42, 60, 92, 0.06), rgba(225, 233, 255, 0.04));
+    animation: hero-float 25s infinite ease-in-out;
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  .blob-hero-1 {
+    width: 400px;
+    height: 400px;
+    top: 10%;
+    left: 15%;
+    animation-delay: 0s;
+  }
+
+  .blob-hero-2 {
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    right: 20%;
+    animation-delay: -8s;
+  }
+
+  .blob-hero-3 {
+    width: 250px;
+    height: 250px;
+    bottom: 20%;
+    left: 60%;
+    animation-delay: -16s;
+  }
+
+  @keyframes hero-float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    25% {
+      transform: translateY(-30px) translateX(20px) scale(1.1);
+    }
+    50% {
+      transform: translateY(20px) translateX(-15px) scale(0.9);
+    }
+    75% {
+      transform: translateY(-15px) translateX(25px) scale(1.05);
+    }
+  }
+}
+
+/* Loading Animation */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(173, 200, 255, 0.3);
+  border-top: 3px solid #ADC8FF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling enhancements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Button hover effects */
+button:hover, .cursor-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(173, 200, 255, 0.3);
+}
+
+/* Ensure all cursors are visible */
+* {
+  cursor: default !important;
+}
+
+button, .cursor-hover, a, [role="button"] {
+  cursor: pointer !important;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Shooting stars animation */
+.shooting-stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 50px;
+  opacity: 0;
+  animation: shooting-star 3s linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+  top: 20%;
+  left: -5%;
+  width: 80px;
+  animation-delay: 0s;
+  animation-duration: 4s;
+}
+
+.shooting-star:nth-child(2) {
+  top: 40%;
+  left: -5%;
+  width: 60px;
+  animation-delay: 1.5s;
+  animation-duration: 3.5s;
+}
+
+.shooting-star:nth-child(3) {
+  top: 60%;
+  left: -5%;
+  width: 100px;
+  animation-delay: 3s;
+  animation-duration: 5s;
+}
+
+.shooting-star:nth-child(4) {
+  top: 80%;
+  left: -5%;
+  width: 70px;
+  animation-delay: 4.5s;
+  animation-duration: 3s;
+}
+
+.shooting-star:nth-child(5) {
+  top: 10%;
+  left: -5%;
+  width: 50px;
+  animation-delay: 6s;
+  animation-duration: 4.5s;
+}
+
+@keyframes shooting-star {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) translateY(-50px);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 100px)) translateY(50px);
+  }
+}
